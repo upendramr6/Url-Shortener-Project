@@ -1,0 +1,10 @@
+URL Shortener
+
+Design a Url Shortener servie that takes in a valid Url and return a shortened Url , redirecting the user to the previously provided Url
+
+
+
+
+ROUTES
+
+POST /URL-  Generates a new short Url and returns the shortend URL

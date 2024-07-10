@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+    <nav class="navbar" style="background-color: #e3f2fd;">
+        <h1 style="text-align: center;">URL Shortener</h1>
+      </nav>
+      <form class="row g-3" method="POST" action="/url">
+        <div class="col-auto">
+          <input type="text" readonly class="form-control-plaintext" value="Enter your Original URL">
+        </div>
+        <div class="col-auto">
+          <input type="text" name="url" class="form-control"placeholder="https://example.com">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Generate</button>
+        </div>
+      </form>
+
+      <% if (locals.id) { %>
+        <p>URL Generated: http://localhost:8001/url/<%= id %></p>
+       <% } %>
+
+      <% if (locals.urls) { %>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">S. No</th>
+                <th scope="col">ShortID</th>
+                <th scope="col">Redirect</th>
+                <th scope="col">Clicks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% urls.forEach((url, index) => { %>
+                <tr>
+                <td><%= index + 1 %></td>
+                <td><%= url.shortId %></td>
+                <td><%= url.redirectURL %></td>
+                <td><%= url.visitHistory.length %></td>
+            </tr>
+              <% }) %>
+            </tbody>
+          </table>
+      <% } %>
+
+    </div>
+</body>
+</html>
